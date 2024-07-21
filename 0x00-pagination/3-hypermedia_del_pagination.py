@@ -7,6 +7,7 @@ import csv
 import math
 from typing import List, Dict, Any
 
+
 class Server:
     """Server class to paginate a database of popular baby names.
     """
@@ -37,19 +38,26 @@ class Server:
             }
         return self.__indexed_dataset
 
-    def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict[str, Any]:
+    def get_hyper_index(
+            self, index: int = None, page_size: int = 10
+            ) -> Dict[str, Any]:
         """
-        Get a hypermedia page from the dataset with a given start index and page size.
+        Get a hypermedia page from the dataset with a given start index and
+        page size.
 
         Args:
             index (int): The start index of the page.
             page_size (int): The number of items per page.
 
         Returns:
-            Dict[str, Any]: A dictionary containing hypermedia pagination details.
+            Dict[str, Any]: A dictionary containing hypermedia pagination
+            details.
         """
-        assert index is None or (isinstance(index, int) and 0 <= index < len(self.dataset())), \
-            "index must be a valid integer within the range of the dataset"
+
+        # Index must be a valid integer within the range of the dataset
+        assert index is None or (
+            isinstance(index, int) and 0 <= index < len(self.dataset())
+            )
 
         dataset = self.indexed_dataset()
         data = []
