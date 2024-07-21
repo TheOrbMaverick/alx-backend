@@ -4,10 +4,10 @@ Calculating start and end index for pagination
 """
 import csv
 import math
-from typing import List
+from typing import List, Tuple, Dict, Any
 
 
-def index_range(page: int, page_size: int) -> tuple:
+def index_range(page: int, page_size: int) -> Tuple:
     """
     Calculate the start and end index for a given page and page size.
 
@@ -62,7 +62,7 @@ class Server:
             if start_index < len(dataset) else []
             )
 
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> List[List]:
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Any]:
         """
         Get a hypermedia page from the dataset.
 
