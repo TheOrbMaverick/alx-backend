@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
-""" LIFOCache module """
-
+"""
+LIFOCache module
+"""
 from base_caching import BaseCaching
 
 
 class LIFOCache(BaseCaching):
-    """ LIFOCache defines a caching system with LIFO eviction policy """
+    """
+    LIFOCache defines a caching system with LIFO eviction policy
+    """
 
     def __init__(self):
         """ Initialize the cache """
