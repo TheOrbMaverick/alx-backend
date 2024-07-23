@@ -1,29 +1,27 @@
 #!/usr/bin/env python3
-"""
-First In First Out
-"""
+""" FIFOCache module """
 from base_caching import BaseCaching
 
 
 class FIFOCache(BaseCaching):
-    """
-    LIFOCache defines a caching system with LIFO eviction policy 
-    """
+    """ FIFOCache defines a caching system with FIFO eviction policy """
 
     def __init__(self):
-        """Initialize the cache"""
+        """ Initialize the cache """
         super().__init__()
-        self.last_key = None
+        self.order = []
 
     def put(self, key, item):
         """ Add an item in the cache """
         if key is not None and item is not None:
-            if len(self.cache_data) >= BaseCaching.MAX_ITEMS and key not in self.cache_data:
-                if self.last_key is not None:
-                    print(f"DISCARD: {self.last_key}")
-                    del self.cache_data[self.last_key]
+            if key in self.cache_data:
+                self.order.remove(key)
+            elif len(self.cache_data) >= BaseCaching.MAX_ITEMS:
+                discarded = self.order.pop(0)
+                print(f"DISCARD: {discarded}")
+                del self.cache_data[discarded]
             self.cache_data[key] = item
-            self.last_key = key
+            self.order.append(key)
 
     def get(self, key):
         """ Get an item by key """
