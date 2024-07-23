@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Basic caching in 
+Basic caching in
 """
 from base_caching import BaseCaching
 
@@ -16,4 +16,3 @@ class BasicCache(BaseCaching):
     def get(self, key):
         """ Get an item by key """
         return self.cache_data.get(key, None)
-
