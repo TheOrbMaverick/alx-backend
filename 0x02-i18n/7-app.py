@@ -8,6 +8,7 @@ from flask_babel import Babel, _
 import pytz
 from pytz.exceptions import UnknownTimeZoneError
 
+
 class Config:
     """
     Configuration class for Flask app.
@@ -15,6 +16,7 @@ class Config:
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
+
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -27,6 +29,7 @@ users = {
     3: {"name": "Spock", "locale": "kg", "timezone": "Vulcan"},
     4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
 }
+
 
 @babel.localeselector
 def get_locale():
@@ -42,6 +45,7 @@ def get_locale():
         return g.user['locale']
     # Fall back to the default behavior
     return request.accept_languages.best_match(app.config['LANGUAGES'])
+
 
 @babel.timezoneselector
 def get_timezone():
@@ -66,15 +70,18 @@ def get_timezone():
     # Fall back to the default timezone
     return app.config['BABEL_DEFAULT_TIMEZONE']
 
+
 def get_user():
     """
-    Return a user dictionary or None if the ID cannot be found or if login_as was not passed.
+    Return a user dictionary or None if the ID cannot be
+    found or if login_as was not passed.
     """
     try:
         user_id = int(request.args.get('login_as'))
         return users.get(user_id)
     except (TypeError, ValueError):
         return None
+
 
 @app.before_request
 def before_request():
@@ -83,12 +90,14 @@ def before_request():
     """
     g.user = get_user()
 
+
 @app.route('/')
 def index():
     """
     Route for the home page.
     """
     return render_template('index.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
