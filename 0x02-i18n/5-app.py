@@ -67,6 +67,8 @@ def before_request():
 @app.route('/')
 def index():
     """
+    '_()' or getext function to get translated strings for the title
+    and header based on the selected language.
     Route for the home page.
     """
     return render_template('index.html')
