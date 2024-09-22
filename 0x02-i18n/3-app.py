@@ -34,10 +34,10 @@ def get_locale():
 @app.route('/')
 def index():
     """
-    Route for the home page.
-
-    Uses the Babel `_` function to get translated strings for the title 
+    Uses the Babel _ function to get translated strings for the title
     and header based on the selected language.
+
+    Route for the home page.
     """
     return render_template(
         '3-index.html',
