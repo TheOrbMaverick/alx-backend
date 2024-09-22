@@ -7,7 +7,7 @@ and header based on the selected language.
 """
 
 from flask import Flask, render_template, request
-from flask_babel import Babel, _
+from flask_babel import Babel, gettext
 
 
 class Config:
@@ -43,8 +43,8 @@ def index():
     """
     return render_template(
         '3-index.html',
-        home_title=_("home_title"),
-        home_header=_("home_header")
+        home_title= gettext("home_title"),
+        home_header= gettext("home_header")
         )
 
 
