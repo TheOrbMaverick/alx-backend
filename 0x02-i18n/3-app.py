@@ -34,7 +34,7 @@ def get_locale():
 @app.route('/')
 def index():
     """
-    Uses the Babel _ function to get translated strings for the title
+    _ function to get translated strings for the title
     and header based on the selected language.
 
     Route for the home page.
