@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """
 Basic Flask app with a single route and Babel for i18n.
+
+_() or getext function to get translated strings for the title
+and header based on the selected language.
 """
 
 from flask import Flask, render_template, request
